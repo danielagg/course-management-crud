@@ -57,6 +57,10 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+// const mapDispatchToProps = {
+//   createCourse: courseActions.createCourse // automatically bound to dispatch
+// };
+
 CoursesPage.propTypes = {
   courses: PropTypes.array.isRequired,
   actions: PropTypes.func.isRequired
