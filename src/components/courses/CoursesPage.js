@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import * as courseActions from "../../redux/actions/courseActions";
@@ -6,6 +6,12 @@ import { bindActionCreators } from "redux";
 
 const CoursesPage = props => {
   const [course, setCourse] = useState({ title: "" });
+
+  useEffect(() => {
+    props.actions.loadCourses().catch(err => {
+      console.log("Failed loading courses" + err);
+    });
+  }, []);
 
   const handleChange = event => {
     setCourse({ title: event.target.value });
@@ -15,8 +21,6 @@ const CoursesPage = props => {
     event.preventDefault();
 
     // action must be wrapped in a dispatch call, cannot call it directly
-    // props.dispatch(courseActions.createCourse(course));
-    //props.createCourse(course);
     props.actions.createCourse(course);
   };
 
@@ -31,10 +35,15 @@ const CoursesPage = props => {
 
       {/* Display courses from store */}
       {props.courses.map(course => (
-        <div key={course.title}>{course.title}</div>
+        <div key={course.id}>{course.name}</div>
       ))}
     </>
   );
+};
+
+CoursesPage.propTypes = {
+  courses: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
 // determines what state is passed down to current component (via props)
@@ -43,17 +52,9 @@ const mapStateToProps = state => {
   return { courses: state.courses };
 };
 
-CoursesPage.propTypes = {
-  courses: PropTypes.array.isRequired,
-  //dispatch: PropTypes.func.isRequired
-  //createCourse: PropTypes.func.isRequired
-  actions: PropTypes.object.isRequired
-};
-
 // determines what actions are available for the current component
 const mapDispatchToProps = dispatch => {
   return {
-    // createCourse: course => dispatch(courseActions.createCourse(course))
     actions: bindActionCreators(courseActions, dispatch)
   };
 };
