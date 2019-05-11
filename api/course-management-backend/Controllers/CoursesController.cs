@@ -9,6 +9,8 @@ using course_management_backend.Contexts;
 using course_management_backend.Entities;
 using course_management_backend.Repositories;
 using course_management_backend.Filters;
+using course_management_backend.Models;
+using AutoMapper;
 
 namespace course_management_backend.Controllers
 {
@@ -17,10 +19,12 @@ namespace course_management_backend.Controllers
     public class CoursesController : ControllerBase
     {
         private readonly ICourseRepository _repo;
+        private readonly IMapper _mapper;
 
-        public CoursesController(ICourseRepository repo)
+        public CoursesController(ICourseRepository repo, IMapper mapper)
         {
             _repo = repo ?? throw new ArgumentNullException(nameof(repo));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         // GET: api/Courses
@@ -78,14 +82,17 @@ namespace course_management_backend.Controllers
         //}
 
         // POST: api/Courses
-        //[HttpPost]
-        //public async Task<ActionResult<Course>> PostCourse(Course course)
-        //{
-        //    _context.Courses.Add(course);
-        //    await _context.SaveChangesAsync();
+        [HttpPost]
+        public async Task<ActionResult<Course>> PostCourse(CourseAtCreation courseToInsert)
+        {
+            var courseEntity = _mapper.Map<Course>(courseToInsert);
 
-        //    return CreatedAtAction("GetCourse", new { id = course.Id }, course);
-        //}
+            _repo.AddCourse(courseEntity);
+
+            await _repo.SaveChangesAsync();
+
+            return CreatedAtAction("GetCourse", new { id = courseEntity.Id }, courseEntity);
+        }
 
         // DELETE: api/Courses/5
         //[HttpDelete("{id}")]

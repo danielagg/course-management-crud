@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace course_management_backend.Entities
 {
+    /// <summary>
+    /// This is the entity of user: matches with table 'User' in DB
+    /// </summary>
     [Table("User")]
     public class User
     {

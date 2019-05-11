@@ -16,6 +16,8 @@ namespace course_management_backend.AutoMapper
                 .ForMember(
                     dst => dst.ResponsibleUserName,
                     opt => opt.MapFrom(src => $"{src.Responsible.FirstName} {src.Responsible.LastName}"));
+
+            CreateMap<CourseAtCreation, Course>();
         }
     }
 }

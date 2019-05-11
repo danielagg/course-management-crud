@@ -38,7 +38,7 @@ namespace course_management_backend.Contexts
                 },
                 new User
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("7e3b1df1-7a14-49e7-a913-5b37ef1af8dc"),
                     FirstName = "Anthony",
                     LastName = "Grayer"
                 },

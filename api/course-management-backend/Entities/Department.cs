@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace course_management_backend.Entities
 {
+    /// <summary>
+    /// This is the entity of department: matches with table 'Department' in DB
+    /// </summary>
     [Table("Department")]
     public class Department
     {
