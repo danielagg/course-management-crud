@@ -5,20 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace course_management_backend.Models
+namespace course_management_backend.Entities
 {
-    [Table("User")]
-    public class User
+    [Table("Department")]
+    public class Department
     {
         [Key]
         public Guid Id { get; set; }
 
         [Required]
         [MaxLength(255)]
-        public string FirstName { get; set; }
-
-        [Required]
-        [MaxLength(255)]
-        public string LastName { get; set; }
+        public string Name { get; set; }
     }
 }

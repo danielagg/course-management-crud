@@ -1,11 +1,11 @@
-﻿using course_management_backend.Models;
+﻿using course_management_backend.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace course_management_backend.Data
+namespace course_management_backend.Contexts
 {
     public class CourseContext : DbContext
     {

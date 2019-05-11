@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace course_management_backend.Models
+namespace course_management_backend.Entities
 {
     [Table("Course")]
     public class Course
