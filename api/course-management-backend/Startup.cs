@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using AutoMapper;
+using course_management_backend.AutoMapper;
 using course_management_backend.Contexts;
+using course_management_backend.Entities;
+using course_management_backend.Models;
 using course_management_backend.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,12 +32,19 @@ namespace course_management_backend
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             var dbConnectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<CourseContext>(options => options.UseSqlServer(dbConnectionString));
 
             services.AddScoped<ICourseRepository, CourseRepository>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            Mapper.Initialize(cfg => {
+                cfg.CreateMap<Course, CourseModel>();
+                cfg.AddProfile<CourseProfile>();
+            });
+
+            services.AddAutoMapper(typeof(Startup));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

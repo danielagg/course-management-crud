@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using course_management_backend.Contexts;
 using course_management_backend.Entities;
 using course_management_backend.Repositories;
+using course_management_backend.Filters;
 
 namespace course_management_backend.Controllers
 {
@@ -24,6 +25,7 @@ namespace course_management_backend.Controllers
 
         // GET: api/Courses
         [HttpGet]
+        [MultipleCoursesResultFilter]
         public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
         {
             var courseEntities = await _repo.GetCoursesAsync();
@@ -32,6 +34,7 @@ namespace course_management_backend.Controllers
 
         // GET: api/Courses/5
         [HttpGet("{id}")]
+        [CourseResultFilter]
         public async Task<ActionResult<Course>> GetCourse(Guid id)
         {
             var course = await _repo.GetCourseAsync(id);
