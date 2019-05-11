@@ -1,4 +1,5 @@
 ﻿using course_management_backend.Entities;
+using course_management_backend.Entities.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace course_management_backend.Contexts
             SeedUsersTable(modelBuilder);
             SeedDepartmentsTable(modelBuilder);
             SeedCoursesTable(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new CourseConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

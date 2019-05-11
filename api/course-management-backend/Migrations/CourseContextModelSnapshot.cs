@@ -19,12 +19,14 @@ namespace course_management_backend.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("course_management_backend.Models.Course", b =>
+            modelBuilder.Entity("course_management_backend.Entities.Course", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("AvailableOnTerm");
+                    b.Property<string>("AvailableOnTerm")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("Credits");
 
@@ -47,7 +49,9 @@ namespace course_management_backend.Migrations
 
                     b.Property<Guid>("ResponsibleId");
 
-                    b.Property<int>("TypeOfExam");
+                    b.Property<string>("TypeOfExam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("Id");
 
@@ -60,8 +64,8 @@ namespace course_management_backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("46be3c38-b724-4839-b2bf-f09546964bad"),
-                            AvailableOnTerm = 1,
+                            Id = new Guid("73a11a80-ba3d-4a76-ad43-9d86ffc76bf6"),
+                            AvailableOnTerm = "Fall",
                             Credits = 5,
                             DepartmentId = new Guid("7c9d3333-5cc0-43f5-aa21-728866a2ee27"),
                             Description = "Lorem ipsum of desc",
@@ -70,11 +74,11 @@ namespace course_management_backend.Migrations
                             NumberOfSeminarsPerTerm = 12,
                             RequirementsFromStudents = "Lorem ipsum of requirements",
                             ResponsibleId = new Guid("16dc743a-727a-4f2f-bb1e-d500f949ca8d"),
-                            TypeOfExam = 0
+                            TypeOfExam = "WrittenExam"
                         });
                 });
 
-            modelBuilder.Entity("course_management_backend.Models.Department", b =>
+            modelBuilder.Entity("course_management_backend.Entities.Department", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -95,47 +99,47 @@ namespace course_management_backend.Migrations
                         },
                         new
                         {
-                            Id = new Guid("68e51555-e380-4480-a5dc-6a2e02a7dcdd"),
+                            Id = new Guid("d5f07405-88ce-404a-9c61-c5f8ffed44f6"),
                             Name = "Macroeconomics"
                         },
                         new
                         {
-                            Id = new Guid("8ab9328e-8907-468e-b645-216e2a022ee7"),
+                            Id = new Guid("4cfe6f2d-7d16-43f9-93fc-13baa48daf84"),
                             Name = "Microeconomics"
                         },
                         new
                         {
-                            Id = new Guid("6c37a919-2594-46a0-be86-846335a29cc1"),
+                            Id = new Guid("35f72a53-8af7-4dc8-ab1e-34199f034760"),
                             Name = "Labour Economis"
                         },
                         new
                         {
-                            Id = new Guid("daf07f8b-99ce-42ee-a1d5-b04d67ddebcc"),
+                            Id = new Guid("2268dc0b-9efc-43f0-938a-2e2bb8e643b1"),
                             Name = "Finance"
                         },
                         new
                         {
-                            Id = new Guid("3dee701c-1b3f-4c7f-8bb1-61bd5e0eb4c9"),
+                            Id = new Guid("6cd8dd10-6564-4d40-8dc5-316c5e02637c"),
                             Name = "Mathematics"
                         },
                         new
                         {
-                            Id = new Guid("a8e1df92-033e-4982-8d22-868a16639fb8"),
+                            Id = new Guid("0a3e1694-b9b8-4407-87f4-328925322d17"),
                             Name = "Statistics"
                         },
                         new
                         {
-                            Id = new Guid("c1822dd1-1e85-4aa0-ae2b-ec7c21333fe5"),
+                            Id = new Guid("2f27da3b-f0a8-4ff6-a954-2818e129aecd"),
                             Name = "Economic Policy"
                         },
                         new
                         {
-                            Id = new Guid("bb8e5865-ef25-429e-b3ae-d722b0578387"),
+                            Id = new Guid("c8fcac1e-8fa1-4745-8fa7-03f9d78feaf6"),
                             Name = "Mathematical Economics and Economic Analysis"
                         });
                 });
 
-            modelBuilder.Entity("course_management_backend.Models.User", b =>
+            modelBuilder.Entity("course_management_backend.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -161,86 +165,86 @@ namespace course_management_backend.Migrations
                         },
                         new
                         {
-                            Id = new Guid("6dbc0233-38d4-448b-94c8-11cc1fd4f06b"),
+                            Id = new Guid("5f7c7199-7012-429d-a744-5a290a32e16b"),
                             FirstName = "Anthony",
                             LastName = "Grayer"
                         },
                         new
                         {
-                            Id = new Guid("70afba3f-a19f-45b6-b121-356472de7efb"),
+                            Id = new Guid("94412180-729e-41c0-abac-b9e5df24aec8"),
                             FirstName = "Jean",
                             LastName = "Ashford"
                         },
                         new
                         {
-                            Id = new Guid("54874529-e36d-495c-8735-87d1c7cdf7a4"),
+                            Id = new Guid("3e037a6e-f02b-453b-baa6-c2c25e6b2ba3"),
                             FirstName = "Michelle",
                             LastName = "Reed"
                         },
                         new
                         {
-                            Id = new Guid("cea5bd97-667a-427b-8199-60bf6f9518a6"),
+                            Id = new Guid("2ee707ea-0234-4ea1-9119-1c2e91f7aeeb"),
                             FirstName = "Dave",
                             LastName = "Cuellar"
                         },
                         new
                         {
-                            Id = new Guid("5dc84764-ed2e-4426-8296-2445948dc8ee"),
+                            Id = new Guid("08bdfec6-b2c3-4e3a-b9fa-37bb817daaf1"),
                             FirstName = "Frances",
                             LastName = "Bouie"
                         },
                         new
                         {
-                            Id = new Guid("16d3ffe1-fda0-4cb4-840a-ed3995b3c5f5"),
+                            Id = new Guid("f75c4ec9-9ad4-4a04-94d5-0237b9839f2a"),
                             FirstName = "Howard",
                             LastName = "Clay"
                         },
                         new
                         {
-                            Id = new Guid("5e8d97f6-d9f6-46e7-970c-4e3b34e60d40"),
+                            Id = new Guid("1428ddec-d8f9-47b3-892b-16fa2bd0c0d3"),
                             FirstName = "Jennifer",
                             LastName = "Spahr"
                         },
                         new
                         {
-                            Id = new Guid("c9a4875b-1683-421b-9368-02a62a74794a"),
+                            Id = new Guid("1e989519-83db-46b7-99e7-fdf5e7487d88"),
                             FirstName = "Patrick",
                             LastName = "Smith"
                         },
                         new
                         {
-                            Id = new Guid("d9e10ed8-39ef-4af5-a634-6ed947e57c86"),
+                            Id = new Guid("5a3cb214-9e88-4e65-87be-f1d4b93fd20b"),
                             FirstName = "John",
                             LastName = "Haas"
                         },
                         new
                         {
-                            Id = new Guid("bed2bdfc-4178-44df-af46-48130ea87ae8"),
+                            Id = new Guid("ed0aac76-e847-4076-8be6-fcddc25a8990"),
                             FirstName = "Ethel",
                             LastName = "Stebbins"
                         },
                         new
                         {
-                            Id = new Guid("4972a9da-f532-4e6b-9b36-e845f63f6cd1"),
+                            Id = new Guid("7123e10a-0b9c-4225-87dd-44b67d8b17ea"),
                             FirstName = "Henry",
                             LastName = "Arredondo"
                         },
                         new
                         {
-                            Id = new Guid("9ee180e4-ee42-40c1-8f8b-dd6f95136108"),
+                            Id = new Guid("7ba3c2d6-75ab-4e66-8b92-7578ecbc07cd"),
                             FirstName = "Roseann",
                             LastName = "Hammel"
                         });
                 });
 
-            modelBuilder.Entity("course_management_backend.Models.Course", b =>
+            modelBuilder.Entity("course_management_backend.Entities.Course", b =>
                 {
-                    b.HasOne("course_management_backend.Models.Department", "Department")
+                    b.HasOne("course_management_backend.Entities.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("course_management_backend.Models.User", "Responsible")
+                    b.HasOne("course_management_backend.Entities.User", "Responsible")
                         .WithMany()
                         .HasForeignKey("ResponsibleId")
                         .OnDelete(DeleteBehavior.Cascade);

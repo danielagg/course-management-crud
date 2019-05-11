@@ -43,7 +43,8 @@ namespace course_management_backend.Entities
         [Range(0, 100)]
         public int? NumberOfSeminarsPerTerm { get; set; }
 
-        public Term? AvailableOnTerm { get; set; }
+        [Column(TypeName = "nvarchar(30)")]
+        public Term AvailableOnTerm { get; set; }
 
         [Required]
         [MaxLength(1000)]
@@ -54,6 +55,7 @@ namespace course_management_backend.Entities
         public string RequirementsFromStudents { get; set; }
 
         [Required]
+        [Column(TypeName = "nvarchar(30)")]
         public ExamType TypeOfExam { get; set; }
 
         [Required]
