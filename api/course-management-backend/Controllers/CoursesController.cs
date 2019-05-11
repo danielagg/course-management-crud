@@ -46,28 +46,28 @@ namespace course_management_backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCourse(int id, Course course)
         {
-            if (id != course.Id)
-            {
-                return BadRequest();
-            }
+            //if (id != course.Id)
+            //{
+            //    return BadRequest();
+            //}
 
-            _context.Entry(course).State = EntityState.Modified;
+            //_context.Entry(course).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CourseExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            //try
+            //{
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!CourseExists(id))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
 
             return NoContent();
         }
@@ -100,7 +100,7 @@ namespace course_management_backend.Controllers
 
         private bool CourseExists(int id)
         {
-            return _context.Courses.Any(e => e.Id == id);
+            return false; // _context.Courses.Any(e => e.Id == id);
         }
     }
 }

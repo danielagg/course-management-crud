@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using course_management_backend.Data;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -24,12 +25,12 @@ namespace course_management_backend
                 try
                 {
                     var context = services.GetRequiredService<CourseContext>();
-                    DbInitializer.Initialize(context);
+                    context.Database.Migrate();
                 }
                 catch (Exception ex)
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred while seeding the database.");
+                    logger.LogError(ex, "An error occurred while migrating the database.");
                 }
             }
 

@@ -3,14 +3,17 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import * as courseActions from "../../redux/actions/courseActions";
 import { bindActionCreators } from "redux";
+import { Link } from "react-router-dom";
 
 const CoursesPage = props => {
   const [course, setCourse] = useState({ title: "" });
 
   useEffect(() => {
-    props.actions.loadCourses().catch(err => {
-      console.log("Failed loading courses" + err);
-    });
+    if (props.courses.length === 0) {
+      props.actions.loadCourses().catch(err => {
+        console.log("Failed loading courses" + err);
+      });
+    }
   }, []);
 
   const handleChange = event => {
@@ -35,7 +38,9 @@ const CoursesPage = props => {
 
       {/* Display courses from store */}
       {props.courses.map(course => (
-        <div key={course.id}>{course.name}</div>
+        <div key={course.id}>
+          <Link to={"/course/" + course.id}>{course.name}</Link>
+        </div>
       ))}
     </>
   );
